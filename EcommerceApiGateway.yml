@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: EcommerceApiGateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: auth-service
+          uri: lb://EcommerceAuthService
+          predicates:
+            - Path=/auth/**
+
+        - id: product-service
+          uri: lb://EcommerceProductService
+          predicates:
+            - Path=/products/**
+
+        - id: cart-service
+          uri: lb://EcommerceCartService
+          predicates:
+            - Path=/cart/**
+
+        - id: order-service
+          uri: lb://EcommerceOrdersService
+          predicates:
+            - Path=/orders/**
+
+        - id: payment-service
+          uri: lb://EcommercePaymentService
+          predicates:
+            - Path=/payment/**
+
+        - id: report-service
+          uri: lb://EcommerceReportService
+          predicates:
+            - Path=/reports/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
