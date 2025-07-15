@@ -1,0 +1,17 @@
+server:
+  error:
+    include-message: always
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+springdoc:
+  swagger-ui:
+    enabled: true
