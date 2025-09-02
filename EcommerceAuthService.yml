@@ -3,14 +3,45 @@ server:
 
 spring:
   application:
-    name: EcommerceAuthService
-
+    name: auth-service
+  
   datasource:
     url: jdbc:mysql://localhost:3306/auth_db
     username: root
     password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
 
+# Eureka Configuration
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+
+# JWT Configuration
+jwt:
+  secret: mysupersecretkeymysupersecretkey123456
+
+# Internal API Key for service-to-service communication
+internal:
+  api:
+    key: secret-internal-key-12345
+
+# Logging Configuration
+logging:
+  level:
+    com.prade.app: DEBUG
+    org.springframework.security: DEBUG
