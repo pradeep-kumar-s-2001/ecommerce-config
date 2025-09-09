@@ -1,9 +1,9 @@
 server:
   port: 8083
 
-spring:
-  application:
-    name: cart-service  # Standard naming convention
+# spring:
+#   application:
+#     name: cart-service  # Standard naming convention
   
   datasource:
     url: jdbc:mysql://localhost:3306/cart_db
